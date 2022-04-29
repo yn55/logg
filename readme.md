@@ -6,4 +6,3 @@
 [![Development Workflow 3.8](https://github.com/yn55/logg/actions/workflows/dev.yml/badge.svg)](https://github.com/yn55/logg/actions/workflows/dev.yml)
 
 * [Developmental Deployment](https://logdeve.herokuapp.com/)
-

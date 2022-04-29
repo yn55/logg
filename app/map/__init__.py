@@ -50,8 +50,6 @@ def api_locations():
 @map.route('/locations/map', methods=['GET'])
 def map_locations():
     google_api_key = current_app.config.get('GOOGLE_API_KEY')
-    log = logging.getLogger("myApp")
-    log.info(google_api_key)
     try:
         return render_template('map_locations.html',google_api_key=google_api_key)
     except TemplateNotFound:
@@ -71,11 +69,13 @@ def location_upload():
         with open(filepath) as file:
             csv_file = csv.DictReader(file)
             for row in csv_file:
-                list_of_locations.append(Location(row['location'],row['longitude'],row['latitude'],row['population']))
-
-        current_user.locations = list_of_locations
-        db.session.commit()
-
+                location = Location.query.filter_by(title=row['location']).first()
+                if location is None:
+                    current_user.locations.append(Location(row['location'],row['longitude'],row['latitude'],row['population']))
+                    db.session.commit()
+                else:
+                    current_user.locations.append(location)
+                    db.session.commit()
         return redirect(url_for('map.browse_locations'))
 
     try:
