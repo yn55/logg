@@ -4,8 +4,8 @@
 
 
 <div class="row col-8">
-    {% block title %}Welcome: {{ current_user.email }}{% endblock %}
-    {% block content %}
+    {% block title %}Welcome: {{ current_user.email }}
+    {% block content %} {% endblock %}
         <h2>Welcome: {{ current_user.email }}</h2>
         {{ render_table(data) }}
 
@@ -21,8 +21,8 @@
 
 
         <script type=text/javascript>
-            $(document).ready(function () {
-                $('.table').DataTable({
+            (document).ready(function () {
+                ('.table').DataTable({
                         dom: 'Bfrtip',
                         buttons: [
                             'copy', 'csv', 'excel', 'pdf', 'print'
