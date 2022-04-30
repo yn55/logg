@@ -4,7 +4,7 @@ from app import db
 from app.db.models import User, Song
 from faker import Faker
 
-def test_adding_user(application):
+def test_adding_user(application, add_user):
     log = logging.getLogger("myApp")
     with application.app_context():
         assert db.session.query(User).count() == 1
