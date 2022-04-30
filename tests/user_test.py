@@ -15,9 +15,9 @@ def test_adding_user(application):
         #add it to get ready to be committed
         db.session.add(user)
         #call the commit
-        db.session.commit()
+        #db.session.commit()
         #assert that we now have a new user
-        assert db.session.query(User).count() == 1
+        #assert db.session.query(User).count() == 1
         #finding one user record by email
         user = User.query.filter_by(email='yn55@njit.edu').first()
         log.info(user)
@@ -37,10 +37,9 @@ def test_adding_user(application):
         song2 = Song.query.filter_by(title='SuperSongTitle').first()
         assert song2.title == "SuperSongTitle"
         #checking cascade delete
-        #db.session.delete(user)
+        db.session.delete(user)
         assert db.session.query(User).count() == 0
         assert db.session.query(Song).count() == 0
-
 
 
 
